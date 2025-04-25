@@ -1,0 +1,1 @@
+[2025-04-25 12:59:55,058] INFO [BrokerToControllerChannelManager id=0 name=forwarding] Node 0 disconnected. (org.apache.kafka.clients.NetworkClient)
