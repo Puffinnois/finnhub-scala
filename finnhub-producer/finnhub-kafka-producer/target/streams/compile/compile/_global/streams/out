@@ -1,0 +1,49 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:9:8: object * is not a member of package scala.concurrent.duration[0m
+[0m[[0m[31merror[0m] [0m[0mimport scala.concurrent.duration.*[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:10:8: value * is not a member of object scala.jdk.CollectionConverters[0m
+[0m[[0m[31merror[0m] [0m[0mimport scala.jdk.CollectionConverters.*[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:20:20: not found: value scopt[0m
+[0m[[0m[31merror[0m] [0m[0m  val parser = new scopt.OParserBuilder[Cli][0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:23:5: not found: value OParser[0m
+[0m[[0m[31merror[0m] [0m[0m    OParser.sequence([0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:24:7: not found: value opt[0m
+[0m[[0m[31merror[0m] [0m[0m      opt[String]("mode")[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:26:61: not found: value success[0m
+[0m[[0m[31merror[0m] [0m[0m        .validate(m => if(Set("live","replay","hybrid")(m)) success else failure("mode live|replay|hybrid"))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:26:74: not found: value failure[0m
+[0m[[0m[31merror[0m] [0m[0m        .validate(m => if(Set("live","replay","hybrid")(m)) success else failure("mode live|replay|hybrid"))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:30:13: not found: value scopt[0m
+[0m[[0m[31merror[0m] [0m[0m  val cli = scopt.OParser.parse(argsDef, args, Cli()).getOrElse(sys.exit(1))[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:38:27: value millis is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m  val ReplayDelay    = 10.millis           // tempo entre 2 lignes rejouées[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:39:27: value seconds is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m  val ApiLagMax      = 15.seconds          // déclenche le fallback (hybrid)[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:88:63: value asScala is not a member of java.util.Iterator[java.nio.file.Path][0m
+[0m[[0m[31merror[0m] [0m[0m    val files = Files.list(Paths.get(FallbackDir)).iterator().asScala[0m
+[0m[[0m[31merror[0m] [0m[0m                                                              ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:67:32: reference to send is ambiguous;[0m
+[0m[[0m[33mwarn[0m] [0m[0mit is both defined in the enclosing object ResilientProducer and inherited in the enclosing anonymous class as method send (defined in class WebSocketClient)[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 2, symbols inherited from a superclass shadow symbols defined in an outer scope.[0m
+[0m[[0m[33mwarn[0m] [0m[0mSuch references are ambiguous in Scala 3. To continue using the inherited symbol, write `this.send`.[0m
+[0m[[0m[33mwarn[0m] [0m[0mOr use `-Wconf:msg=legacy-binding:s` to silence this warning. [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m        Symbols.foreach(sym => send(s"""{"type":"subscribe","symbol":"$sym"}"""))[0m
+[0m[[0m[33mwarn[0m] [0m[0m                               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\src\main\scala\FinnhubKafkaProducer.scala:72:9: reference to send is ambiguous;[0m
+[0m[[0m[33mwarn[0m] [0m[0mit is both defined in the enclosing object ResilientProducer and inherited in the enclosing anonymous class as method send (defined in class WebSocketClient)[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 2, symbols inherited from a superclass shadow symbols defined in an outer scope.[0m
+[0m[[0m[33mwarn[0m] [0m[0mSuch references are ambiguous in Scala 3. To continue using the inherited symbol, write `this.send`.[0m
+[0m[[0m[33mwarn[0m] [0m[0mOr use `-Wconf:msg=legacy-binding:s` to silence this warning. [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m        send(msg)[0m
+[0m[[0m[33mwarn[0m] [0m[0m        ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[0m[[0m[31merror[0m] [0m[0m11 errors found[0m

@@ -1,83 +1,109 @@
 import java.net.URI
-import java.time.ZonedDateTime
+import java.time.{LocalDateTime, ZonedDateTime}
 import java.time.format.DateTimeFormatter
 import java.util.Properties
 import scala.util.control.NonFatal
-import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
+import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord, RecordMetadata}
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
+import ujson._
 
 object FinnhubKafkaProducer extends App {
 
-  val API_KEY = "cvns001r01qq3c7gupo0cvns001r01qq3c7gupog"
-  val KAFKA_TOPIC = "stock-market-data"
-  val STOCK_SYMBOLS = List("AAPL", "TSLA", "GOOGL")
-  val BOOTSTRAP_SERVERS = "localhost:9092"
+  /* --------------------------------------------------------------------- *
+   *  logs                                                   *
+   * --------------------------------------------------------------------- */
+  private val tsFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+  private def log(msg: String): Unit =
+    println(s"[${LocalDateTime.now.format(tsFmt)}] $msg")
 
-  val props = new Properties()
-  props.put("bootstrap.servers", BOOTSTRAP_SERVERS)
-  props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
+  /* --------------------------------------------------------------------- *
+   *  parameters                                                          *
+   * --------------------------------------------------------------------- */
+  private val ApiKey           = sys.env.getOrElse("FINNHUB_API_KEY", "cvns001r01qq3c7gupo0cvns001r01qq3c7gupog")
+  private val StockSymbols     = List("AAPL", "TSLA", "GOOGL")
+  private val BootstrapServers = sys.env.getOrElse("KAFKA_BOOTSTRAP", "localhost:9092")
+  private val KafkaTopic       = "stock-market-data"
+
+  /* --------------------------------------------------------------------- *
+   *  kafka producer                                                       *
+   * --------------------------------------------------------------------- */
+  private val props = new Properties()
+  props.put("bootstrap.servers", BootstrapServers)
+  props.put("key.serializer",   "org.apache.kafka.common.serialization.StringSerializer")
   props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-  val producer = new KafkaProducer[String, String](props)
+  private val producer = new KafkaProducer[String, String](props)
 
-  def createWebSocket(): WebSocketClient = {
-    val wsUrl = s"wss://ws.finnhub.io?token=$API_KEY"
+  /* --------------------------------------------------------------------- *
+   *  websocket finnhub                                                    *
+   * --------------------------------------------------------------------- */
+  private def createWebSocket(): WebSocketClient = {
+    val wsUrl = s"wss://ws.finnhub.io?token=$ApiKey"
 
     new WebSocketClient(new URI(wsUrl)) {
 
-      override def onOpen(handshakedata: ServerHandshake): Unit = {
-        println("WebSocket connecté à Finnhub")
-        STOCK_SYMBOLS.foreach { symbol =>
-          val subscribeMessage = s"""{"type":"subscribe","symbol":"$symbol"}"""
-          send(subscribeMessage)
-          println(s"Abonnement à $symbol")
+      override def onOpen(handshake: ServerHandshake): Unit = {
+        log("WebSocket connecté")
+        StockSymbols.foreach { s =>
+          send(s"""{"type":"subscribe","symbol":"$s"}""")
+          log(s"Abonnement à $s")
         }
       }
 
       override def onMessage(message: String): Unit = {
-        val timestamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-        val messageWithTimestamp = s"""{"timestamp":"$timestamp","data":$message}"""
-        println(s"Donnée envoyée : $messageWithTimestamp")
-        val record = new ProducerRecord[String, String](KAFKA_TOPIC, messageWithTimestamp)
-        producer.send(record)
+        log(s"Message Finnhub brut : $message")
+
+        val ts  = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+        val out = s"""{"timestamp":"$ts","data":$message}"""
+        val key = try read(message)("data")(0)("s").str catch { case _: Throwable => null }
+
+        producer.send(new ProducerRecord[String, String](KafkaTopic, key, out),
+          (_: RecordMetadata, ex: Exception) =>
+            if (ex == null) log(s"Envoi Kafka OK pour clé=$key")
+            else             log(s"Erreur Kafka : ${ex.getMessage}")
+        )
       }
 
       override def onClose(code: Int, reason: String, remote: Boolean): Unit = {
-        println(s"WebSocket fermé : $reason (code=$code, remote=$remote)")
+        log(s"WebSocket fermé ($code) : $reason")
         reconnectWithBackoff()
       }
 
       override def onError(ex: Exception): Unit = {
-        println(s"Erreur WebSocket : ${ex.getMessage}")
+        log(s"Erreur WebSocket : ${ex.getMessage}")
         reconnectWithBackoff()
       }
 
-      def reconnectWithBackoff(): Unit = {
-        new Thread(() => {
-          var retryDelay = 1000
-          var connected = false
-          while (!connected) {
-            try {
-              println(s"Tentative de reconnexion dans ${retryDelay / 1000}s...")
-              Thread.sleep(retryDelay)
-              this.reconnectBlocking()
-              connected = true
-              println("Reconnexion réussie")
-            } catch {
-              case NonFatal(_) =>
-                retryDelay = math.min(retryDelay * 2, 30000)
-            }
+      private def reconnectWithBackoff(): Unit = new Thread(() => {
+        var delay = 1000
+        var ok    = false
+        while (!ok) {
+          try {
+            log(s"Nouvelle tentative dans ${delay / 1000}s")
+            Thread.sleep(delay)
+            this.reconnectBlocking()
+            ok = true
+            log("Reconnexion réussie")
+          } catch {
+            case NonFatal(_) => delay = math.min(delay * 2, 30000)
           }
-        }).start()
-      }
+        }
+      }, "ws-reconnect").start()
     }
   }
 
+  /* --------------------------------------------------------------------- *
+   *  start & stop                                                   *
+   * --------------------------------------------------------------------- */
   val socket = createWebSocket()
-  socket.connect()
+  socket.connectBlocking()
 
-  scala.io.StdIn.readLine("Appuyez sur ENTRÉE pour quitter...\n")
-  println("Fermeture en cours...")
-  socket.close()
-  producer.close()
+  sys.addShutdownHook {
+    log("Arrêt demandé → fermeture des ressources")
+    socket.close()
+    producer.flush()
+    producer.close()
+  }
+
+  while (socket.isOpen) Thread.sleep(10_000)
 }
