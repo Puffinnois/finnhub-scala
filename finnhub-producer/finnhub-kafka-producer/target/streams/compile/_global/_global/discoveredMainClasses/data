@@ -1,1 +1,1 @@
-["FinnhubKafkaProducer","example.Hello"]
+["example.Hello","producer.ResilientProducer"]

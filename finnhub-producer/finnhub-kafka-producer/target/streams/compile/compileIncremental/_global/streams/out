@@ -1,8 +1,9 @@
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
-[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 8 products, 2 sources, 4 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 10 products, 2 sources, 4 libraries[0m
 [0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/FinnhubKafkaProducer.scala, ${BASE}/src/main/scala/example/Hello.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/FinnhubKafkaProducer.scala), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating '${CSR_CACHE}/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.1.0/scopt_2.13-4.1.0.jar' because could not find class scopt.Read on the classpath.[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/FinnhubKafkaProducer.scala), unmodified = ...),Set(),Set(${CSR_CACHE}/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.1.0/scopt_2.13-4.1.0.jar),API Changes: Set())[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
@@ -10,21 +11,59 @@
 [0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/src/main/scala/FinnhubKafkaProducer.scala)[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(FinnhubKafkaProducer)[0m
+[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set(${CSR_CACHE}/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.1.0/scopt_2.13-4.1.0.jar)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(producer.ResilientProducer, producer.ResilientProducer.Cli)[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set(${BASE}/src/main/scala/FinnhubKafkaProducer.scala)[0m
 [0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(FinnhubKafkaProducer)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(producer.ResilientProducer, producer.ResilientProducer.Cli)[0m
 [0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/src/main/scala/FinnhubKafkaProducer.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: FinnhubKafkaProducer[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: producer.ResilientProducer, producer.ResilientProducer.Cli[0m
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mReturning already retrieved and compiled bridge: C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala2-sbt-bridge\2.13.12\scala2-sbt-bridge-2.13.12.jar.[0m
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler ce6be40 for Scala compiler version 2.13.12[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler ae490a7 for Scala compiler version 2.13.12[0m
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
 [0m[[0m[0mdebug[0m] [0m[0m	C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.12\scala-library-2.13.12.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\apache\kafka\kafka-clients\3.5.1\kafka-clients-3.5.1.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\java-websocket\Java-WebSocket\1.5.2\Java-WebSocket-1.5.2.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\lihaoyi\ujson_2.13\3.3.1\ujson_2.13-3.3.1.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\github\luben\zstd-jni\1.5.5-1\zstd-jni-1.5.5-1.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\lz4\lz4-java\1.8.0\lz4-java-1.8.0.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\xerial\snappy\snappy-java\1.1.10.1\snappy-java-1.1.10.1.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\lihaoyi\upickle-core_2.13\3.3.1\upickle-core_2.13-3.3.1.jar;C:\Users\said_\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\lihaoyi\geny_2.13\1.1.0\geny_2.13-1.1.0.jar[0m
-[0m[[0m[0mdebug[0m] [0m[0mCompilation failed (CompilerInterface)[0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 2.7083979 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from producer.ResilientProducer...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: producer.ResilientProducer[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(producer.ResilientProducer)[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(producer.ResilientProducer,ModifiedNames(changes = UsedName(delayedInit,[Default]), UsedName(asInstanceOf,[Default]), UsedName(synchronized,[Default]), UsedName(executionStart,[Default]), UsedName(cli,[Default]), UsedName(builder,[Default]), UsedName(finalize,[Default]), UsedName(eq,[Default]), UsedName(isInstanceOf,[Default]), UsedName(ResilientProducer,[Default]), UsedName(getClass,[Default]), UsedName(argsDef,[Default]), UsedName(Cli,[Default]), UsedName(##,[Default]), UsedName(main,[Default]), UsedName(hashCode,[Default]), UsedName(notifyAll,[Default]), UsedName(wait,[Default]), UsedName(!=,[Default]), UsedName(equals,[Default]), UsedName(args,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(ne,[Default]), UsedName(toString,[Default]), UsedName(==,[Default]), UsedName($init$,[Default]))) invalidates 1 classes due to The producer.ResilientProducer has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(delayedInit,[Default]), UsedName(asInstanceOf,[Default]), UsedName(synchronized,[Default]), UsedName(executionStart,[Default]), UsedName(cli,[Default]), UsedName(builder,[Default]), UsedName(finalize,[Default]), UsedName(eq,[Default]), UsedName(isInstanceOf,[Default]), UsedName(ResilientProducer,[Default]), UsedName(getClass,[Default]), UsedName(argsDef,[Default]), UsedName(Cli,[Default]), UsedName(##,[Default]), UsedName(main,[Default]), UsedName(hashCode,[Default]), UsedName(notifyAll,[Default]), UsedName(wait,[Default]), UsedName(!=,[Default]), UsedName(equals,[Default]), UsedName(args,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(ne,[Default]), UsedName(toString,[Default]), UsedName(==,[Default]), UsedName($init$,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(producer.ResilientProducer)[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m        [0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from producer.ResilientProducer.Cli...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: producer.ResilientProducer.Cli[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(producer.ResilientProducer.Cli)[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(producer.ResilientProducer.Cli,ModifiedNames(changes = UsedName(productElementNames,[Default]), UsedName(asInstanceOf,[Default]), UsedName(synchronized,[Default]), UsedName(producer;ResilientProducer;Cli;init;,[Default]), UsedName(productElementName,[Default]), UsedName(copy,[Default]), UsedName(finalize,[Default]), UsedName(<init>$default$1,[Default]), UsedName(productElement,[Default]), UsedName(eq,[Default]), UsedName(isInstanceOf,[Default]), UsedName(productArity,[Default]), UsedName(apply$default$1,[Default]), UsedName(productIterator,[Default]), UsedName(getClass,[Default]), UsedName(Cli,[Default]), UsedName(##,[Default]), UsedName(andThen,[Default]), UsedName(unapply,[Default]), UsedName(canEqual,[Default]), UsedName(compose,[Default]), UsedName(hashCode,[Default]), UsedName(notifyAll,[Default]), UsedName(productPrefix,[Default]), UsedName(wait,[Default]), UsedName(!=,[Default]), UsedName(equals,[Default]), UsedName(notify,[Default]), UsedName(copy$default$1,[Default]), UsedName(clone,[Default]), UsedName(apply,[Default]), UsedName(ne,[Default]), UsedName(toString,[Default]), UsedName(==,[Default]), UsedName(mode,[Default]), UsedName($init$,[Default]))) invalidates 1 classes due to The producer.ResilientProducer.Cli has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(productElementNames,[Default]), UsedName(asInstanceOf,[Default]), UsedName(synchronized,[Default]), UsedName(producer;ResilientProducer;Cli;init;,[Default]), UsedName(productElementName,[Default]), UsedName(copy,[Default]), UsedName(finalize,[Default]), UsedName(<init>$default$1,[Default]), UsedName(productElement,[Default]), UsedName(eq,[Default]), UsedName(isInstanceOf,[Default]), UsedName(productArity,[Default]), UsedName(apply$default$1,[Default]), UsedName(productIterator,[Default]), UsedName(getClass,[Default]), UsedName(Cli,[Default]), UsedName(##,[Default]), UsedName(andThen,[Default]), UsedName(unapply,[Default]), UsedName(canEqual,[Default]), UsedName(compose,[Default]), UsedName(hashCode,[Default]), UsedName(notifyAll,[Default]), UsedName(productPrefix,[Default]), UsedName(wait,[Default]), UsedName(!=,[Default]), UsedName(equals,[Default]), UsedName(notify,[Default]), UsedName(copy$default$1,[Default]), UsedName(clone,[Default]), UsedName(apply,[Default]), UsedName(ne,[Default]), UsedName(toString,[Default]), UsedName(==,[Default]), UsedName(mode,[Default]), UsedName($init$,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(producer.ResilientProducer.Cli)[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m        [0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from FinnhubKafkaProducer...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: FinnhubKafkaProducer[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(FinnhubKafkaProducer)[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(FinnhubKafkaProducer,ModifiedNames(changes = UsedName(delayedInit,[Default]), UsedName(asInstanceOf,[Default]), UsedName(synchronized,[Default]), UsedName(executionStart,[Default]), UsedName(finalize,[Default]), UsedName(eq,[Default]), UsedName(isInstanceOf,[Default]), UsedName(getClass,[Default]), UsedName(##,[Default]), UsedName(main,[Default]), UsedName(FinnhubKafkaProducer,[Default]), UsedName(hashCode,[Default]), UsedName(notifyAll,[Default]), UsedName(socket,[Default]), UsedName(wait,[Default]), UsedName(!=,[Default]), UsedName(equals,[Default]), UsedName(args,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(ne,[Default]), UsedName(toString,[Default]), UsedName(==,[Default]), UsedName($init$,[Default]))) invalidates 1 classes due to The FinnhubKafkaProducer has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(delayedInit,[Default]), UsedName(asInstanceOf,[Default]), UsedName(synchronized,[Default]), UsedName(executionStart,[Default]), UsedName(finalize,[Default]), UsedName(eq,[Default]), UsedName(isInstanceOf,[Default]), UsedName(getClass,[Default]), UsedName(##,[Default]), UsedName(main,[Default]), UsedName(FinnhubKafkaProducer,[Default]), UsedName(hashCode,[Default]), UsedName(notifyAll,[Default]), UsedName(socket,[Default]), UsedName(wait,[Default]), UsedName(!=,[Default]), UsedName(equals,[Default]), UsedName(args,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(ne,[Default]), UsedName(toString,[Default]), UsedName(==,[Default]), UsedName($init$,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(FinnhubKafkaProducer)[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m        [0m
+[0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
+[0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0mFinal step, transitive dependencies:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: producer.ResilientProducer, producer.ResilientProducer.Cli, FinnhubKafkaProducer[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated macros due to upstream dependencies change: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mNo classes were invalidated.[0m

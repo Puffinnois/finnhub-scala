@@ -1,1 +1,21 @@
-[0m[[0m[0mdebug[0m] [0m[0mJar uptodate: C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\finnhub-kafka-producer_2.13-0.1.0-SNAPSHOT.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mPackaging C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\finnhub-kafka-producer_2.13-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example\Greeting.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\example\Greeting.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example\Hello$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\example\Hello$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example\Hello$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\example\Hello$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example\Hello.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\example\Hello.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FinnhubKafkaProducer$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\FinnhubKafkaProducer$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FinnhubKafkaProducer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\FinnhubKafkaProducer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FinnhubKafkaProducer$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\FinnhubKafkaProducer$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FinnhubKafkaProducer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-producer\finnhub-kafka-producer\target\scala-2.13\classes\FinnhubKafkaProducer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
