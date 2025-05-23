@@ -1,0 +1,294 @@
+[0m[[0m[31merror[0m] [0m[0morg.apache.spark.sql.streaming.StreamingQueryException: Job aborted due to stage failure: Task 81 in stage 23.0 failed 1 times, most recent failure: Lost task 81.0 in stage 23.0 (TID 30) (192.168.1.48 executor driver): java.lang.IllegalStateException: Error reading delta file file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta of HDFSStateStoreProvider[id = (op=0,part=81),dir = file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81]: file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:461)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$4(HDFSBackedStateStoreProvider.scala:417)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction1$mcVJ$sp.apply(JFunction1$mcVJ$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.NumericRange.foreach$mVc$sp(NumericRange.scala:115)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$2(HDFSBackedStateStoreProvider.scala:416)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.timeTakenMs(Utils.scala:640)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.loadMap(HDFSBackedStateStoreProvider.scala:388)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getLoadedMapForStore(HDFSBackedStateStoreProvider.scala:224)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getStore(HDFSBackedStateStoreProvider.scala:208)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStore$.get(StateStore.scala:500)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStoreRDD.compute(StateStoreRDD.scala:125)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:92)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.Task.run(Task.scala:139)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:554)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1529)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:557)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.Thread.run(Thread.java:829)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: java.io.FileNotFoundException: File file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.open(RawLocalFileSystem.java:274)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.DelegateToFileSystem.open(DelegateToFileSystem.java:192)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.AbstractFileSystem.open(AbstractFileSystem.java:670)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FilterFs.open(FilterFs.java:227)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:874)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:870)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FSLinkResolver.resolve(FSLinkResolver.java:90)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext.open(FileContext.java:876)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.AbstractFileContextBasedCheckpointFileManager.open(CheckpointFileManager.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:457)[0m
+[0m[[0m[31merror[0m] [0m[0m	... 24 more[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mDriver stacktrace:[0m
+[0m[[0m[31merror[0m] [0m[0m=== Streaming Query ===[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifier: AggregatedCSV [id = a1b79e3d-d6c9-4652-ace4-f24a577d5b32, runId = 0a50102b-a28d-42cd-9782-9367bbf5a3d6][0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Committed Offsets: {KafkaV2[Subscribe[stock-market-data]]: {"stock-market-data":{"0":1471}}}[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Available Offsets: {KafkaV2[Subscribe[stock-market-data]]: {"stock-market-data":{"0":1482}}}[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent State: ACTIVE[0m
+[0m[[0m[31merror[0m] [0m[0mThread State: RUNNABLE[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mLogical Plan:[0m
+[0m[[0m[31merror[0m] [0m[0mWriteToMicroBatchDataSourceV1 FileSink[data/csv/aggregated], a1b79e3d-d6c9-4652-ace4-f24a577d5b32, [queryName=AggregatedCSV, path=data/csv/aggregated, checkpointLocation=data/csv/aggregated_checkpoint, header=true], Append[0m
+[0m[[0m[31merror[0m] [0m[0m+- Project [symbol#33, date_format(window#80-T120000ms.start, yyyy-MM-dd HH:mm:ss, Some(Europe/Paris)) AS minute#150, avg_price#91, max_price#100, min_price#102, std_price#112, total_volume#93, trade_count#96L, vwap#139][0m
+[0m[[0m[31merror[0m] [0m[0m   +- Project [symbol#33, window#80-T120000ms, avg_price#91, total_volume#93, trade_count#96L, sum_pxv#98, max_price#100, min_price#102, std_price#112, (sum_pxv#98 / total_volume#93) AS vwap#139][0m
+[0m[[0m[31merror[0m] [0m[0m      +- Aggregate [symbol#33, window#121-T120000ms], [symbol#33, window#121-T120000ms AS window#80-T120000ms, avg(price#34) AS avg_price#91, sum(volume#35) AS total_volume#93, count(1) AS trade_count#96L, sum(pxv#70) AS sum_pxv#98, max(price#34) AS max_price#100, min(price#34) AS min_price#102, stddev_samp(price#34) AS std_price#112][0m
+[0m[[0m[31merror[0m] [0m[0m         +- Filter isnotnull(timestamp_ts#46-T120000ms)[0m
+[0m[[0m[31merror[0m] [0m[0m            +- Expand [[named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 0), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 0) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70], [named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 15000000), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 15000000) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70], [named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 30000000), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 30000000) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70], [named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 45000000), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 45000000) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70]], [window#121-T120000ms, symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70][0m
+[0m[[0m[31merror[0m] [0m[0m               +- EventTimeWatermark timestamp_ts#46: timestamp, 2 minutes[0m
+[0m[[0m[31merror[0m] [0m[0m                  +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46, minute#53, hour#61, (price#34 * volume#35) AS pxv#70][0m
+[0m[[0m[31merror[0m] [0m[0m                     +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46, minute#53, date_format(timestamp_ts#46, yyyy-MM-dd HH, Some(Europe/Paris)) AS hour#61][0m
+[0m[[0m[31merror[0m] [0m[0m                        +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46, date_format(timestamp_ts#46, yyyy-MM-dd HH:mm, Some(Europe/Paris)) AS minute#53][0m
+[0m[[0m[31merror[0m] [0m[0m                           +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_millis(event_timestamp#36L) AS timestamp_ts#46][0m
+[0m[[0m[31merror[0m] [0m[0m                              +- Project [d#30.s AS symbol#33, d#30.p AS price#34, d#30.v AS volume#35, d#30.t AS event_timestamp#36L, ingest_time#27][0m
+[0m[[0m[31merror[0m] [0m[0m                                 +- Project [d#30, json#23.timestamp AS ingest_time#27][0m
+[0m[[0m[31merror[0m] [0m[0m                                    +- Generate explode(json#23.data.data), false, [d#30][0m
+[0m[[0m[31merror[0m] [0m[0m                                       +- Filter (json#23.data.type = trade)[0m
+[0m[[0m[31merror[0m] [0m[0m                                          +- Project [from_json(StructField(timestamp,StringType,true), StructField(data,StructType(StructField(type,StringType,true),StructField(data,ArrayType(StructType(StructField(p,DoubleType,true),StructField(s,StringType,true),StructField(t,LongType,true),StructField(v,DoubleType,true)),true),true)),true), json_str#21, Some(Europe/Paris)) AS json#23][0m
+[0m[[0m[31merror[0m] [0m[0m                                             +- Project [cast(value#8 as string) AS json_str#21][0m
+[0m[[0m[31merror[0m] [0m[0m                                                +- StreamingDataSourceV2Relation [key#7, value#8, topic#9, partition#10, offset#11L, timestamp#12, timestampType#13], org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaScan@63c70350, KafkaV2[Subscribe[stock-market-data]][0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:333)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:207)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: org.apache.spark.SparkException: Job aborted due to stage failure: Task 81 in stage 23.0 failed 1 times, most recent failure: Lost task 81.0 in stage 23.0 (TID 30) (192.168.1.48 executor driver): java.lang.IllegalStateException: Error reading delta file file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta of HDFSStateStoreProvider[id = (op=0,part=81),dir = file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81]: file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:461)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$4(HDFSBackedStateStoreProvider.scala:417)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction1$mcVJ$sp.apply(JFunction1$mcVJ$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.NumericRange.foreach$mVc$sp(NumericRange.scala:115)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$2(HDFSBackedStateStoreProvider.scala:416)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.timeTakenMs(Utils.scala:640)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.loadMap(HDFSBackedStateStoreProvider.scala:388)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getLoadedMapForStore(HDFSBackedStateStoreProvider.scala:224)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getStore(HDFSBackedStateStoreProvider.scala:208)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStore$.get(StateStore.scala:500)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStoreRDD.compute(StateStoreRDD.scala:125)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:92)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.Task.run(Task.scala:139)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:554)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1529)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:557)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.Thread.run(Thread.java:829)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: java.io.FileNotFoundException: File file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.open(RawLocalFileSystem.java:274)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.DelegateToFileSystem.open(DelegateToFileSystem.java:192)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.AbstractFileSystem.open(AbstractFileSystem.java:670)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FilterFs.open(FilterFs.java:227)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:874)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:870)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FSLinkResolver.resolve(FSLinkResolver.java:90)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext.open(FileContext.java:876)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.AbstractFileContextBasedCheckpointFileManager.open(CheckpointFileManager.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:457)[0m
+[0m[[0m[31merror[0m] [0m[0m	... 24 more[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mDriver stacktrace:[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2785)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2721)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2720)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.List.foreach(List.scala:333)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2720)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1206)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1206)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.Option.foreach(Option.scala:437)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1206)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2984)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2923)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2912)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:971)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2263)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeWrite$1(FileFormatWriter.scala:241)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.writeAndCommit(FileFormatWriter.scala:271)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeWrite(FileFormatWriter.scala:212)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:193)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.FileStreamSink.addBatch(FileStreamSink.scala:171)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runBatch$17(MicroBatchExecution.scala:729)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:118)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:195)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:103)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:827)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:65)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runBatch$16(MicroBatchExecution.scala:726)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:411)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:409)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runBatch(MicroBatchExecution.scala:726)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$2(MicroBatchExecution.scala:284)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:411)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:409)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1(MicroBatchExecution.scala:247)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:67)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runActivatedStream(MicroBatchExecution.scala:237)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.$anonfun$runStream$1(StreamExecution.scala:306)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:827)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:284)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:207)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: java.lang.IllegalStateException: Error reading delta file file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta of HDFSStateStoreProvider[id = (op=0,part=81),dir = file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81]: file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:461)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$4(HDFSBackedStateStoreProvider.scala:417)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction1$mcVJ$sp.apply(JFunction1$mcVJ$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.NumericRange.foreach$mVc$sp(NumericRange.scala:115)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$2(HDFSBackedStateStoreProvider.scala:416)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.timeTakenMs(Utils.scala:640)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.loadMap(HDFSBackedStateStoreProvider.scala:388)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getLoadedMapForStore(HDFSBackedStateStoreProvider.scala:224)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getStore(HDFSBackedStateStoreProvider.scala:208)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStore$.get(StateStore.scala:500)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStoreRDD.compute(StateStoreRDD.scala:125)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:92)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.Task.run(Task.scala:139)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:554)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1529)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:557)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.Thread.run(Thread.java:829)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: java.io.FileNotFoundException: File file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.open(RawLocalFileSystem.java:274)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.DelegateToFileSystem.open(DelegateToFileSystem.java:192)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.AbstractFileSystem.open(AbstractFileSystem.java:670)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FilterFs.open(FilterFs.java:227)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:874)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:870)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FSLinkResolver.resolve(FSLinkResolver.java:90)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext.open(FileContext.java:876)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.AbstractFileContextBasedCheckpointFileManager.open(CheckpointFileManager.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:457)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$4(HDFSBackedStateStoreProvider.scala:417)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction1$mcVJ$sp.apply(JFunction1$mcVJ$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.NumericRange.foreach$mVc$sp(NumericRange.scala:115)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$2(HDFSBackedStateStoreProvider.scala:416)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.timeTakenMs(Utils.scala:640)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.loadMap(HDFSBackedStateStoreProvider.scala:388)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getLoadedMapForStore(HDFSBackedStateStoreProvider.scala:224)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getStore(HDFSBackedStateStoreProvider.scala:208)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStore$.get(StateStore.scala:500)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStoreRDD.compute(StateStoreRDD.scala:125)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:92)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.Task.run(Task.scala:139)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:554)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1529)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:557)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.Thread.run(Thread.java:829)[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) org.apache.spark.sql.streaming.StreamingQueryException: Job aborted due to stage failure: Task 81 in stage 23.0 failed 1 times, most recent failure: Lost task 81.0 in stage 23.0 (TID 30) (192.168.1.48 executor driver): java.lang.IllegalStateException: Error reading delta file file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta of HDFSStateStoreProvider[id = (op=0,part=81),dir = file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81]: file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:461)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$4(HDFSBackedStateStoreProvider.scala:417)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction1$mcVJ$sp.apply(JFunction1$mcVJ$sp.scala:18)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.NumericRange.foreach$mVc$sp(NumericRange.scala:115)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.$anonfun$loadMap$2(HDFSBackedStateStoreProvider.scala:416)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.timeTakenMs(Utils.scala:640)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.loadMap(HDFSBackedStateStoreProvider.scala:388)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getLoadedMapForStore(HDFSBackedStateStoreProvider.scala:224)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.getStore(HDFSBackedStateStoreProvider.scala:208)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStore$.get(StateStore.scala:500)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.StateStoreRDD.compute(StateStoreRDD.scala:125)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:92)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.Task.run(Task.scala:139)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:554)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1529)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:557)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)[0m
+[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.Thread.run(Thread.java:829)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: java.io.FileNotFoundException: File file:/C:/Users/said_/Desktop/spark_streaming/finnhub-scala/finnhub-consumer/data/csv/aggregated_checkpoint/state/0/81/1.delta does not exist[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.deprecatedGetFileStatus(RawLocalFileSystem.java:779)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileLinkStatusInternal(RawLocalFileSystem.java:1100)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:769)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.RawLocalFileSystem.open(RawLocalFileSystem.java:274)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.DelegateToFileSystem.open(DelegateToFileSystem.java:192)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.AbstractFileSystem.open(AbstractFileSystem.java:670)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FilterFs.open(FilterFs.java:227)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:874)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext$6.next(FileContext.java:870)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FSLinkResolver.resolve(FSLinkResolver.java:90)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.hadoop.fs.FileContext.open(FileContext.java:876)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.AbstractFileContextBasedCheckpointFileManager.open(CheckpointFileManager.scala:328)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider.updateFromDeltaFile(HDFSBackedStateStoreProvider.scala:457)[0m
+[0m[[0m[31merror[0m] [0m[0m	... 24 more[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mDriver stacktrace:[0m
+[0m[[0m[31merror[0m] [0m[0m=== Streaming Query ===[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifier: AggregatedCSV [id = a1b79e3d-d6c9-4652-ace4-f24a577d5b32, runId = 0a50102b-a28d-42cd-9782-9367bbf5a3d6][0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Committed Offsets: {KafkaV2[Subscribe[stock-market-data]]: {"stock-market-data":{"0":1471}}}[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Available Offsets: {KafkaV2[Subscribe[stock-market-data]]: {"stock-market-data":{"0":1482}}}[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent State: ACTIVE[0m
+[0m[[0m[31merror[0m] [0m[0mThread State: RUNNABLE[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mLogical Plan:[0m
+[0m[[0m[31merror[0m] [0m[0mWriteToMicroBatchDataSourceV1 FileSink[data/csv/aggregated], a1b79e3d-d6c9-4652-ace4-f24a577d5b32, [queryName=AggregatedCSV, path=data/csv/aggregated, checkpointLocation=data/csv/aggregated_checkpoint, header=true], Append[0m
+[0m[[0m[31merror[0m] [0m[0m+- Project [symbol#33, date_format(window#80-T120000ms.start, yyyy-MM-dd HH:mm:ss, Some(Europe/Paris)) AS minute#150, avg_price#91, max_price#100, min_price#102, std_price#112, total_volume#93, trade_count#96L, vwap#139][0m
+[0m[[0m[31merror[0m] [0m[0m   +- Project [symbol#33, window#80-T120000ms, avg_price#91, total_volume#93, trade_count#96L, sum_pxv#98, max_price#100, min_price#102, std_price#112, (sum_pxv#98 / total_volume#93) AS vwap#139][0m
+[0m[[0m[31merror[0m] [0m[0m      +- Aggregate [symbol#33, window#121-T120000ms], [symbol#33, window#121-T120000ms AS window#80-T120000ms, avg(price#34) AS avg_price#91, sum(volume#35) AS total_volume#93, count(1) AS trade_count#96L, sum(pxv#70) AS sum_pxv#98, max(price#34) AS max_price#100, min(price#34) AS min_price#102, stddev_samp(price#34) AS std_price#112][0m
+[0m[[0m[31merror[0m] [0m[0m         +- Filter isnotnull(timestamp_ts#46-T120000ms)[0m
+[0m[[0m[31merror[0m] [0m[0m            +- Expand [[named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 0), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 0) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70], [named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 15000000), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 15000000) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70], [named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 30000000), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 30000000) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70], [named_struct(start, knownnullable(precisetimestampconversion(((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 45000000), LongType, TimestampType)), end, knownnullable(precisetimestampconversion((((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - CASE WHEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) < cast(0 as bigint)) THEN (((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) + 15000000) ELSE ((precisetimestampconversion(timestamp_ts#46-T120000ms, TimestampType, LongType) - 0) % 15000000) END) - 45000000) + 60000000), LongType, TimestampType))), symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70]], [window#121-T120000ms, symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46-T120000ms, minute#53, hour#61, pxv#70][0m
+[0m[[0m[31merror[0m] [0m[0m               +- EventTimeWatermark timestamp_ts#46: timestamp, 2 minutes[0m
+[0m[[0m[31merror[0m] [0m[0m                  +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46, minute#53, hour#61, (price#34 * volume#35) AS pxv#70][0m
+[0m[[0m[31merror[0m] [0m[0m                     +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46, minute#53, date_format(timestamp_ts#46, yyyy-MM-dd HH, Some(Europe/Paris)) AS hour#61][0m
+[0m[[0m[31merror[0m] [0m[0m                        +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_ts#46, date_format(timestamp_ts#46, yyyy-MM-dd HH:mm, Some(Europe/Paris)) AS minute#53][0m
+[0m[[0m[31merror[0m] [0m[0m                           +- Project [symbol#33, price#34, volume#35, event_timestamp#36L, ingest_time#27, timestamp_millis(event_timestamp#36L) AS timestamp_ts#46][0m
+[0m[[0m[31merror[0m] [0m[0m                              +- Project [d#30.s AS symbol#33, d#30.p AS price#34, d#30.v AS volume#35, d#30.t AS event_timestamp#36L, ingest_time#27][0m
+[0m[[0m[31merror[0m] [0m[0m                                 +- Project [d#30, json#23.timestamp AS ingest_time#27][0m
+[0m[[0m[31merror[0m] [0m[0m                                    +- Generate explode(json#23.data.data), false, [d#30][0m
+[0m[[0m[31merror[0m] [0m[0m                                       +- Filter (json#23.data.type = trade)[0m
+[0m[[0m[31merror[0m] [0m[0m                                          +- Project [from_json(StructField(timestamp,StringType,true), StructField(data,StructType(StructField(type,StringType,true),StructField(data,ArrayType(StructType(StructField(p,DoubleType,true),StructField(s,StringType,true),StructField(t,LongType,true),StructField(v,DoubleType,true)),true),true)),true), json_str#21, Some(Europe/Paris)) AS json#23][0m
+[0m[[0m[31merror[0m] [0m[0m                                             +- Project [cast(value#8 as string) AS json_str#21][0m
+[0m[[0m[31merror[0m] [0m[0m                                                +- StreamingDataSourceV2Relation [key#7, value#8, topic#9, partition#10, offset#11L, timestamp#12, timestampType#13], org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaScan@63c70350, KafkaV2[Subscribe[stock-market-data]][0m

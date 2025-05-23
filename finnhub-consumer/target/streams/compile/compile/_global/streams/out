@@ -1,4 +1,9 @@
-[0m[[0m[31merror[0m] [0m[0m/home/tina/finnhub-consumer/src/main/scala/FinnhubSparkConsumer.scala:3:8: not found: object spark[0m
-[0m[[0m[31merror[0m] [0m[0mimport spark.implicits._[0m
-[0m[[0m[31merror[0m] [0m[0m       ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-consumer\src\main\scala\FinnhubSparkConsumer.scala:15:26: missing argument list for method toScala in class StreamHasToScala[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `toScala _` or `toScala(_)(_)` instead of `toScala`.[0m
+[0m[[0m[31merror[0m] [0m[0m      Files.list(srcDir).toScala[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\said_\Desktop\spark_streaming\finnhub-scala\finnhub-consumer\src\main\scala\FinnhubSparkConsumer.scala:76:37: value timestamp_millis is not a member of object org.apache.spark.sql.functions[0m
+[0m[[0m[31merror[0m] [0m[0m      .withColumn("timestamp_ts", F.timestamp_millis($"event_timestamp"))[0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
