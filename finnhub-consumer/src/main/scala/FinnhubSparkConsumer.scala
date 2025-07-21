@@ -1,9 +1,4 @@
-// -----------------------------------------------------------------------------
-// src/main/scala/FinnhubSparkConsumer.scala
-// -----------------------------------------------------------------------------
-package consumer
-
-import java.nio.file.{Files, Path, Paths, StandardCopyOption}
+import java.io.File
 import java.time.format.DateTimeFormatter
 import java.time.{LocalDateTime, ZoneId}
 import scala.jdk.CollectionConverters._
@@ -12,57 +7,68 @@ import org.apache.spark.sql.{DataFrame, SparkSession, functions => F}
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types._
 
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.{FileSystem, Path => HPath}
+
 object FinnhubSparkConsumer {
 
-  // ────────────────────────── utilitaires I/O ────────────────────────────────
-  private val TS_FMT     = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-  private val RUN_ID     = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
-                      .format(LocalDateTime.now(ZoneId.systemDefault))
+  // ────────────────────────── utils I/O ────────────────────────────────
+  private val TS_FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+  private val RUN_ID = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
+    .format(LocalDateTime.now(ZoneId.systemDefault))
 
-  private val ckRoot     = Paths.get("data/checkpoints").toAbsolutePath
-  private val ckParsed   = ckRoot.resolve(s"run_$RUN_ID/parsed")
-  private val ckAgg      = ckRoot.resolve(s"run_$RUN_ID/aggregated")
+  private val ckRoot     = new File("data/checkpoints").getAbsolutePath
+  private val ckParsed   = s"$ckRoot/run_$RUN_ID/parsed"
+  private val ckAgg      = s"$ckRoot/run_$RUN_ID/aggregated"
 
-  private val rawOutDir  = Paths.get("data/csv/files").toAbsolutePath
-  private val aggOutDir  = Paths.get("data/csv/aggregated").toAbsolutePath
-  private val parquetDir = Paths.get("data/parquet").toAbsolutePath
+  private val rawOutDir  = new File("data/csv/files").getAbsolutePath
+  private val aggOutDir  = new File("data/csv/aggregated").getAbsolutePath
+  private val parquetDir = new File("data/parquet").getAbsolutePath
+  private val historicalDir = new File("data/historical").getAbsolutePath
 
-  /** archive les agrégats déjà présents (avant nouveau run) */
+  /** archive the old aggregated CSV files to a historical directory */
   private def archiveOldAggregatedFiles(): Unit = {
-    val dstDir = Paths.get("data/historical")
-    if (Files.exists(aggOutDir)) {
-      Files.createDirectories(dstDir)
-      Files.list(aggOutDir).iterator().asScala
-        .filter(p => Files.isRegularFile(p) && p.toString.endsWith(".csv"))
-        .foreach { p =>
-          val tgt = dstDir.resolve(p.getFileName)
+    val conf = new Configuration()
+    val fs = FileSystem.get(conf)
+
+    val srcDir = new HPath(aggOutDir)
+    val dstDir = new HPath(historicalDir)
+
+    if (fs.exists(srcDir)) {
+      if (!fs.exists(dstDir)) fs.mkdirs(dstDir)
+
+      fs.listStatus(srcDir)
+        .filter(f => f.isFile && f.getPath.getName.endsWith(".csv"))
+        .foreach { fileStatus =>
+          val srcPath = fileStatus.getPath
+          val dstPath = new HPath(dstDir, srcPath.getName)
           try {
-            Files.move(p, tgt, StandardCopyOption.REPLACE_EXISTING)
-            println(s"[ARCHIVE] ${p.getFileName} → historical/")
+            fs.rename(srcPath, dstPath)
+            println(s"[ARCHIVE] ${srcPath.getName} → historical/")
           } catch {
-            case _: java.nio.file.FileSystemException =>
-              println(s"[ARCHIVE] Ignoré (verrouillé) : ${p.getFileName}")
+            case e: Exception =>
+              println(s"[ARCHIVE] Error : ${srcPath.getName} (${e.getMessage})")
           }
         }
     }
   }
 
-  /** écrit un batch en CSV puis log l’opération */
+  /** write batch DataFrame to CSV and log the operation */
   private def writeCsvAndLog(df: DataFrame,
-                             path: Path,
+                             path: String,
                              batchId: Long,
                              label: String,
                              partitionCols: Seq[String] = Seq.empty): Unit = {
     val writer = df.write.mode("append").option("header", "true")
-    val finalWriter = if (partitionCols.nonEmpty) writer.partitionBy(partitionCols:_*) else writer
-    finalWriter.csv(path.toString.replace("\\","/"))
+    val finalWriter = if (partitionCols.nonEmpty) writer.partitionBy(partitionCols: _*) else writer
+    finalWriter.csv(path.replace("\\", "/"))
 
-    val ts   = TS_FMT.format(LocalDateTime.now)
+    val ts = TS_FMT.format(LocalDateTime.now)
     val rows = df.count()
     println(f"[$ts] CSV-$label%-8s batch=$batchId%04d  rows=$rows%,d  → $path")
   }
 
-  // ───────────────────────────── programme ───────────────────────────────────
+  // ───────────────────────────── program ───────────────────────────────────
   def main(args: Array[String]): Unit = {
     archiveOldAggregatedFiles()
 
@@ -76,7 +82,7 @@ object FinnhubSparkConsumer {
     import spark.implicits._
     spark.sparkContext.setLogLevel("WARN")
 
-    // ─── schéma Finnhub brut ────────────────────────────────────────────────
+    // ─── schema Finnhub raw ────────────────────────────────────────────────
     val schema = new StructType()
       .add("timestamp", StringType)
       .add("data", new StructType()
@@ -84,7 +90,7 @@ object FinnhubSparkConsumer {
         .add("data", ArrayType(new StructType()
           .add("p", DoubleType)
           .add("s", StringType)
-          .add("t", LongType)   // epoch ms
+          .add("t", LongType)
           .add("v", DoubleType)
         ))
       )
@@ -93,7 +99,7 @@ object FinnhubSparkConsumer {
     val kafkaDF = spark.readStream
       .format("kafka")
       .option("kafka.bootstrap.servers", "localhost:9092")
-      .option("subscribe",              "stock-market-data")
+      .option("subscribe", "stock-market-data")
       .load()
 
     // ─── parsing + enrichissement ───────────────────────────────────────────
@@ -110,13 +116,13 @@ object FinnhubSparkConsumer {
         $"ingest_time"
       )
       .withColumn("timestamp_ts", F.expr("timestamp_millis(event_timestamp)"))
-      .withColumn("hour",   F.date_format($"timestamp_ts","yyyy-MM-dd HH"))
-      .withColumn("minute", F.date_format($"timestamp_ts","yyyy-MM-dd HH:mm"))
+      .withColumn("hour", F.date_format($"timestamp_ts", "yyyy-MM-dd HH"))
+      .withColumn("minute", F.date_format($"timestamp_ts", "yyyy-MM-dd HH:mm"))
 
-    // ─── agrégats fenêtres glissantes 1 min / slide 15 s ────────────────────
+    // ─── sliding window aggregates 1 min / slide 15 s ───────────────────────
     val aggregated = parsed
       .withColumn("pxv", $"price" * $"volume")
-      .withWatermark("timestamp_ts","2 minutes")
+      .withWatermark("timestamp_ts", "2 minutes")
       .groupBy($"symbol", F.window($"timestamp_ts", "1 minute", "15 seconds"))
       .agg(
         F.first($"price").as("open_price"),
@@ -132,56 +138,55 @@ object FinnhubSparkConsumer {
       .withColumn("vwap", $"sum_pxv" / $"total_volume")
       .select(
         $"symbol",
-        F.date_format($"window.start","yyyy-MM-dd HH:mm:ss").as("minute"),
+        F.date_format($"window.start", "yyyy-MM-dd HH:mm:ss").as("minute"),
         $"open_price", $"close_price",
-        $"avg_price",  $"min_price", $"max_price", $"std_price",
+        $"avg_price", $"min_price", $"max_price", $"std_price",
         $"total_volume", $"trade_count", $"vwap"
       )
 
     // ─── sinks ───────────────────────────────────────────────────────────────
 
-    // 1) CSV brut ------------------------------------------------------------
+    // 1) CSV raw ------------------------------------------------------------
     parsed.writeStream
       .foreachBatch { (batchDF: DataFrame, batchId: Long) =>
-      writeCsvAndLog(
-      batchDF.repartition($"symbol", $"hour"),
-      rawOutDir, batchId, "RAW",
-      partitionCols = Seq("symbol","hour")
-    )
-    }
-
-      .option("checkpointLocation", ckParsed.toString.replace("\\","/"))
+        writeCsvAndLog(
+          batchDF.repartition($"symbol", $"hour"),
+          rawOutDir, batchId, "RAW",
+          partitionCols = Seq("symbol", "hour")
+        )
+      }
+      .option("checkpointLocation", ckParsed.replace("\\", "/"))
       .outputMode("append")
       .trigger(Trigger.ProcessingTime("10 seconds"))
       .start()
 
-    // 2) CSV agrégé ----------------------------------------------------------
+    // 2) CSV aggregated ----------------------------------------------------------
     aggregated.writeStream
       .foreachBatch { (batchDF: DataFrame, batchId: Long) =>
-      writeCsvAndLog(batchDF, aggOutDir, batchId, "AGG")
+        writeCsvAndLog(batchDF, aggOutDir, batchId, "AGG")
       }
-      .option("checkpointLocation", ckAgg.toString.replace("\\","/"))
+      .option("checkpointLocation", ckAgg.replace("\\", "/"))
       .outputMode("append")
       .trigger(Trigger.ProcessingTime("10 seconds"))
       .start()
 
-    // 3) Parquet brut -----------------
+    // 3) Parquet raw --------------------------------------------------------
     parsed.writeStream
       .format("parquet")
-      .option("path", parquetDir.toString.replace("\\","/"))
-      .option("checkpointLocation", ckParsed.resolve("parquet").toString.replace("\\","/"))
-      .partitionBy("symbol","hour")
+      .option("path", parquetDir.replace("\\", "/"))
+      .option("checkpointLocation", s"$ckParsed/parquet".replace("\\", "/"))
+      .partitionBy("symbol", "hour")
       .outputMode("append")
       .trigger(Trigger.ProcessingTime("30 seconds"))
       .start()
 
-    // ─── info démarrage ─────────────────────────────────────────────────────
+    // ─── startup info ─────────────────────────────────────────────────────
     println(
       s"""
-         |Consumer lancé (run $RUN_ID)
-         |  CSV brut  → $rawOutDir
-         |  CSV agrég → $aggOutDir   (fenêtre 1 min, slide 15 s)
-         |  Checkpts  → $ckRoot/run_$RUN_ID/
+         |Consumer launched (run $RUN_ID)
+         |  CSV raw  → $rawOutDir
+         |  CSV aggregated → $aggOutDir   (window 1 min, slide 15 s)
+         |  Checkpoints  → $ckRoot/run_$RUN_ID/
          |""".stripMargin)
 
     spark.streams.awaitAnyTermination()
